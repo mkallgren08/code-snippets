@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Test Conversion Files</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript" src="./index.js"></script>
+  <script type="text/javascript" src="./files/distance-conversions.js"></script>
+  <script type="text/javascript" src="./files/temperature-conversions.js"></script>
+  <!-- <script type= "text/javascript" src = ""></script> -->
+</head>
+
+<body>
+  <form>
+    Temp Input:
+    <input type="text" id="temp-input" placeholder="Temperature Input">
+    <br> Temp Output:
+    <input type="text" id="temp-output" placeholder="Temperature Output">
+    <br>
+    <select name="temp-options" id="temp-options">
+      <option value="CtoK">C to K</option>
+      <option value="KtoC">K to C</option>
+      <option value="FtoC">F to C</option>
+      <option value="CtoF">C to F</option>
+      <option value="FtoK">F to K</option>
+      <option value="KtoF">K to F</option>
+    </select>
+    <input type="submit" value="Submit" id="temp-submit">
+  </form>
+</body>
+
+</html>
