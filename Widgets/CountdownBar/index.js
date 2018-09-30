@@ -9,14 +9,14 @@ $(document).ready(function(){
 let TimerVal;
 
 let Timer = {
-  start: function(time, curVal){
+  start: function(time, start){
     let progBar = $('#timer-bar');
     if(progBar.attr('aria-valuemax') !== time){
       progBar.attr('aria-valuemax',time);
     }
-    let myVar = setInterval(function(){myTimer(progBar,curVal)},0.1)
+    let myVar = setInterval(function(){myTimer(progBar,start)},0.1)
     // TimerVal = setInterval({myTimer(time, counter)}, 1000)
-    if (curVal === time) {
+    if (start === time) {
       this.stop()
       setTimeout(this.reset, 4000)
     }
