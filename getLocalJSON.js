@@ -1,3 +1,5 @@
+//This is a code snippet for loading a local json file into your project
+
 function loadJSON(callback) {
 
     var xobj = new XMLHttpRequest();
