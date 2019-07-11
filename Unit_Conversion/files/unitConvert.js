@@ -1,6 +1,5 @@
-// These are various functions for converting one unit of 
-// temperature (either K, C, or F) into another of the three types
-let tempConvert = {
+
+let unitConvert = {
   CtF: (val)=>convertTemp('cel','far',val),
   CtK: (val)=>convertTemp('cel','kel',val),
   FtC: (val)=>convertTemp('far','cel',val),
@@ -10,7 +9,9 @@ let tempConvert = {
 };
 
 let errorMsg = "Error: unit input was not a number; unit input was - "
-// Celsius = K + 273.15
+
+// These are various functions for converting one unit of 
+// temperature (either K, C, or F) into another of the three types
 convertTemp = (inp, out, val) => {
   //console.log(inp,out,val)
   if (isNaN(parseFloat(val))) { return `${errorMsg} ${typeof val}` };
@@ -31,6 +32,6 @@ convertTemp = (inp, out, val) => {
       return 'The temperature unit conversion you are looking for has not been written yet.'
   };
   return parseFloat(res);
-};
+}
 
-// export {tempConvert};
+// export {unitConvert};
