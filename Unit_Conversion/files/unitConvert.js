@@ -63,7 +63,7 @@ convertLength = (inp, out, val) => {
   return res;
 };
  
-exp10 = (ex) => { return Math.pow(10, ex) };
+exp10 = (ex) => { return Math.pow(10, ex) }; 
 
 // export {unitConvert};
 
