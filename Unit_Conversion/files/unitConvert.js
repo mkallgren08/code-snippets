@@ -61,8 +61,8 @@ convertLength = (inp, out, val) => {
   let res = finalExp>=1?parseFloat((v * finalExp)):parseFloat(multiplyPrecise(v,finalExp  ));
   // let res = parseFloat(multiplyPrecise(v,finalExp));
   return res;
-}
-
+};
+ 
 exp10 = (ex) => { return Math.pow(10, ex) };
 
 // export {unitConvert};
