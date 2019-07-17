@@ -3,7 +3,7 @@
 // then you divde the result by 100 (10 ^ 2) to get 0.3. The issue of multiplying 3 and 0.1 in JS is that you get a result of .30000000004 due
 // to binary conversion errors in decimal values; integers do not have these errors
 
-function multiplyPrecise (a, b) {
+multiplyPrecise = (a, b) =>{
   console.log(a,b)
   let c = a.toString(10), d=b.toString(10), con1 = 10, con2 = 10;
 
