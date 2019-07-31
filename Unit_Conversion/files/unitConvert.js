@@ -9,7 +9,8 @@ let unitConvert = {
     KtF: (val) => convertTemp('kel', 'far', val),
   },
   length: {
-    metCon: (inp, out, val) => convertLength(inp, out, val)
+    metCon: (inp, out, val) => convertMetricLength(inp, out, val),
+    impCon: (inp, out, val) => convertImperialLength(inp, out, val)
   }
 
 };
@@ -40,9 +41,8 @@ convertTemp = (inp, out, val) => {
   };
   return parseFloat(res);
 }
-
-// Use for converting lenghts
-convertLength = (inp, out, val) => {
+// Use for converting metric lengths
+convertMetricLength = (inp, out, val) => {
   let metFactor = {
     "tera": 12, "giga": 9, "mega": 6, "kilo": 3,
     "hecta": 2, "deca":1, "prime": 0, "deci": -1, "centi": -2,
@@ -54,14 +54,39 @@ convertLength = (inp, out, val) => {
     return `Error, please check the ${isNaN(v) ? `initial numeric` : (!i ? `input name` : `output name`)} value`;
   }
   // Finds value of x for the 10^x factor to multiply the value by
+  console.log(exp10(i), exp10(o))
   let finalExp = exp10(i) / exp10(o)
-  console.log(finalExp)
+  console.log(`Total Exponent: ${finalExp}`)
   // if finalExp is less than 1, use the multiply precise function to account for non-integer mult errors
   // else it just multiples the two values 
   let res = finalExp>=1?parseFloat((v * finalExp)):parseFloat(multiplyPrecise(v,finalExp  ));
   // let res = parseFloat(multiplyPrecise(v,finalExp));
+  console.log(`Final result: ${res}`)
   return res;
 };
+// Use for converting imperial lengths
+convertImperialLength = (inp,out,val) => {
+  // Note: for imperial units, everything has to be converted to inch first before being converted to final units
+  impFactors={
+    "in": 1, "ft": 12, "yd": 36, "chain": 792, "furlong": 7920, "mile": 63360,
+    "league": 190080, "fathom": 72.96012, "cable": 7296.012, "n_mile": 72960.12
+  }
+  // 1) Convert val to inches using by multiplying val*inp factor
+  // 2) Convert val to output value by dividing val/inp factor
+  // 3) return the final val
+  return (val*impFactors[inp])/impFactors[out];
+};
+// convert from metric to imperial
+convertMetToImp = (con,inp,out,val) =>{
+  // Conversion factor of inches to meters
+  let in_to_m = .0254;
+  // If con = 'met' use in_to_m; else use 1/in_to_m
+  if (con==='met'){
+    val = convertMetricLength(inp,'prime',val) 
+    console.log(val)
+    return convertImperialLength("in",out, (val))
+  }else{}
+}
  
 exp10 = (ex) => { return Math.pow(10, ex) }; 
 
@@ -69,19 +94,58 @@ exp10 = (ex) => { return Math.pow(10, ex) };
 
 // Allows precise multiplication of non-integer values
 multiplyPrecise = (a, b) =>{
-  //console.log(a,b)
-  let c = a.toString(10), d=b.toString(10), con1 = 10, con2 = 10;
-
-  if (c.indexOf('.') > -1 || c.indexOf('e-')> -1){/*console.log('decimal for c');*/ (c.indexOf('.') > -1)?(c = c.split('.')):(c.indexOf('e+')>-1?(c=c.split('e+')):(c=c.split('e-'))); c= c[1]; (c.indexOf('.') > -1)?(con1 = Math.pow(con1, parseInt(c.length))):(con1=Math.pow(con1,c));}
-  if (d.indexOf('.') > -1 || d.indexOf('e-')> -1){/*console.log('decimal for d');*/ (d.indexOf('.') > -1)?(d = d.split('.')):(d.indexOf('e+')>-1?(d=d.split('e+')):(d=d.split('e-'))); d = d[1]; (d.indexOf('.') > -1)?(con2 = Math.pow(con2, parseInt(d.length))):(con2=Math.pow(con2,d));}
+  console.log(`First item: ${a}; Second item: ${b}`)
+  // con = exponent value
+  let c = a.toString(10), d=b.toString(10)
+  var con1 = 10, con2 = 10;
+  console.log(`Value of c: ${c}; Value of d: ${d}`)
+  if (c.indexOf('.') > -1 || c.indexOf('e-')> -1 || c.indexOf('e+')){
+    /*console.log('decimal for c');*/ 
+    (c.indexOf('.') > -1)?(
+      c = c.split('.')
+    ):(
+      c.indexOf('e+')>-1?(
+        c=c.split('e+')
+      ):(
+        c=c.split('e-')
+      )
+    ); 
+    // c= c[1];
+    console.log(`Value of c: ${c}`); 
+    (c.indexOf('.') > -1)?(
+      con1 = Math.pow(con1, parseInt(c.length))
+    ):(
+      con1=Math.pow(con1,c)
+    );
+  };
+  if (d.indexOf('.') > -1 || d.indexOf('e-')> -1 || c.indexOf('e+')){
+    /*console.log('decimal for d');*/ 
+    (d.indexOf('.') > -1)?(
+      d = d.split('.')
+    ):(
+      d.indexOf('e+')>-1?(
+        d=d.split('e+')
+      ):(
+        d=d.split('e-')
+      )
+    ); 
+    d = d[1]; 
+    console.log(`Value of d: ${d}`); 
+    // (d.indexOf('.') > -1)?(
+    //   con2 = Math.pow(con2, parseInt(d.length))
+    // ):(
+    //   con2=Math.pow(con2,d)
+    // );
+    con2 = Math.pow(con2, parseInt(d.length))
+  };
 
   let con =0;
-  console.log(con1, con2)
+  console.log(`Multiple for first item ${con1}; Multiple for second item ${con2} `)
   if (con1 >= con2 && con1 !== Infinity){con = con1} else { con = con2}
-
-  console.log(c,d,con)
+  console.log(con)
+  //console.log(c,d,con)
   a= Math.round(a*con); b = Math.round(b*con);
-  console.log(a, b)
+  console.log(a,b)
   num = a *  b; 
   //console.log(a, b)
   // num = parseFloat(num.toFixed(1))
