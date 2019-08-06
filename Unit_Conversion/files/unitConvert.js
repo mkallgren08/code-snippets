@@ -9,8 +9,12 @@ let unitConvert = {
     KtF: (val) => convertTemp('kel', 'far', val),
   },
   length: {
-    metCon: (inp, out, val) => convertMetricLength(inp, out, val),
-    impCon: (inp, out, val) => convertImperialLength(inp, out, val)
+    // Convert between metric units
+    metCon: (inp, out, val) => convertMetricUnit(inp, out, val),
+    // Convert between imperial units
+    impCon: (inp, out, val) => convertImperialLength(inp, out, val),
+    // Convert between imperial and metric systems
+    sysCon: (con,inp,out,val) => convertMetToImp(con,inp,out,val)
   }
 
 };
@@ -42,7 +46,7 @@ convertTemp = (inp, out, val) => {
   return parseFloat(res);
 }
 // Use for converting metric lengths
-convertMetricLength = (inp, out, val) => {
+convertMetricUnit = (inp, out, val) => {
   let metFactor = {
     "tera": 12, "giga": 9, "mega": 6, "kilo": 3,
     "hecta": 2, "deca":1, "prime": 0, "deci": -1, "centi": -2,
@@ -51,7 +55,10 @@ convertMetricLength = (inp, out, val) => {
 
   let i = metFactor[inp]; let o = metFactor[out]; let v = parseFloat(val);
   if (i === undefined || o === undefined || isNaN(v)) {
-    return `Error, please check the ${isNaN(v) ? `initial numeric` : (!i ? `input name` : `output name`)} value`;
+    let errorMsg = `Error, please check the ${isNaN(v) ? `initial metric numeric` : (!i ? `metric input name` : `metric output name`)} value`;
+    console.log(errorMsg);
+    return errorMsg;
+    
   }
   // Finds value of x for the 10^x factor to multiply the value by
   console.log(exp10(i), exp10(o))
@@ -66,10 +73,17 @@ convertMetricLength = (inp, out, val) => {
 };
 // Use for converting imperial lengths
 convertImperialLength = (inp,out,val) => {
+  
   // Note: for imperial units, everything has to be converted to inch first before being converted to final units
   impFactors={
     "in": 1, "ft": 12, "yd": 36, "chain": 792, "furlong": 7920, "mile": 63360,
     "league": 190080, "fathom": 72.96012, "cable": 7296.012, "n_mile": 72960.12
+  }
+  let i = impFactors[inp]; let o = impFactors[out]; let v = parseFloat(val);
+  if (i === undefined || o === undefined || isNaN(v)) {
+    let errorMsg = `Error, please check the ${isNaN(v) ? `initial imperial numeric` : (!i ? `imperial input name` : `imperial output name`)} value`;
+    console.log(errorMsg);
+    return errorMsg;
   }
   // 1) Convert val to inches using by multiplying val*inp factor
   // 2) Convert val to output value by dividing val/inp factor
@@ -82,16 +96,30 @@ convertMetToImp = (con,inp,out,val) =>{
   let in_to_m = .0254;
   // If con = 'met' use in_to_m; else use 1/in_to_m
   if (con==='met'){
-    val = convertMetricLength(inp,'prime',val) 
+    val = convertMetricUnit(inp,'prime',val) 
     console.log(val)
-    return convertImperialLength("in",out, (val))
-  }else{}
+    val = val/in_to_m;
+    return parseFloat(convertImperialLength("in",out, (val)).toFixed(4));
+  }else{
+    val = convertImperialLength(inp,'in',val) 
+    console.log(val)
+    val = val*in_to_m;
+    return parseFloat(convertMetricUnit("prime",out, (val)).toFixed(4));
+  }
 }
  
 exp10 = (ex) => { return Math.pow(10, ex) }; 
 
 // export {unitConvert};
+convertEnergy = (inp,out,val) => {
+  let energyFactors = {
+   // Joule  // electronvolt        //Reciprocal cm, 
+                                    // from eq: E = hv =hc/lambda
+    "J": 1,   "eV": 1.60217653e-19, "cm-1": 1.98630e-23,
+    "kcal/mol": 6.95e-21, "kJ/mol": 1.66e-21
+  }
 
+}
 // Allows precise multiplication of non-integer values
 multiplyPrecise = (a, b) =>{
   console.log(`First item: ${a}; Second item: ${b}`)
