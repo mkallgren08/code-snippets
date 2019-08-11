@@ -1,0 +1,3 @@
+create-react-app client && cp -r ~/bin/react-app-template/server.js ./ && cp -r ~/bin/react-app-template/routes ./ && cp -r ~/bin/react-app-template/models ./ && cp -r ~/bin/react-app-template/controllers ./ && cp -r ~/bin/react-app-template/package.json ./ && cp -r ~/bin/react-app-template/.gitignore ./ && cp -r ~/bin/react-app-template/.DS_Store ./ && cp -r ~/bin/react-app-template/Procfile ./ && cp -r ~/bin/react-app-template/README.md ./ && cd client/src && mkdir components pages utils && cd components && touch index.js && cd .. && cd pages && touch index.js && cd .. && cd utils && touch index.js && cd ../../.. && yarn install && cd client && yarn install
+
+
