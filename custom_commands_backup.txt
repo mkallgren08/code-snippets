@@ -1,0 +1,36 @@
+#!/bin/bash
+function print_my_input() {
+  # prints the input
+  echo 'Your input: ' $1
+}
+
+function makeNewDirs(){
+  # makes new numbered directories
+  # $1 is the number of directories to make
+  # $2 is the name of the parent directory
+  mkdir $2
+  cd $2
+  COUNTER=1
+  while [  $COUNTER -le $1 ]; do
+      echo The counter is $COUNTER
+      mkdir question_$COUNTER
+      let COUNTER=COUNTER+1 
+  done
+}
+
+function gacMas(){
+  # Add, Commit, Push to Master Branch with custom message
+  # As part of the git commit , take all the parameters ($*) and use them as the commit message
+  git add . && git commit -m "$*" && git push origin master
+}
+
+function gacBranch(){
+  # Add, Commit, Push to Other Branch with custom message
+  # first arg is branch name, all other args are commit message
+  git add . && git commit -m "${*:2}" && git push origin $1
+}
+
+function myCommands(){
+  #Prints out list of custom commands.
+  coding-local && cd Personal_Projects && cd code-snippets && node readAliases.js $1
+}

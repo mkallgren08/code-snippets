@@ -1,0 +1,20 @@
+#  Custom opening notes
+echo "Type 'myCommands x' for a list of custom aliases and commands, where x is one of these values: -a, -c, -ac"
+
+# Alias List
+alias coding-local='cd ~/OneDrive/Desktop/Coding-Local'
+alias coding-ta='cd ~/OneDrive/Desktop/Coding-TA'
+
+alias portfolio='cd ~/OneDrive/Desktop/Coding-Local/Personal_Projects/Portfolio_Apps && code portfolio-full-stack'
+alias srProject='cd ~/OneDrive/Desktop/Coding-Local/Personal_Projects/In_Progress_Apps/Shadowrun_Tracker && code rpg-sr-react'
+
+alias push-snippets='git add . && git commit -m "Made some minor adjustments to snippet file" && git push origin master'
+
+alias make-test-folder='cd ~/OneDrive/Desktop && mkdir Test-File && cd Test-File && touch index.js index.html style.css && cd .. && code Test-File'
+alias push-master='git push origin master'
+
+# Create full stack react app
+alias create-fs-react='mkdir client controllers models routes utils && mv public src .gitignore package.json README.md yarn.lock client && cd client && mkdir build && touch .env '
+
+#custom_commands_source
+source ~/.my_custom_commands.sh
