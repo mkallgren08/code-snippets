@@ -24,7 +24,7 @@ getContent = (key, content) => {
       //console.log(content);
 
     } else {
-      content = content.split("!/bin/bash");
+      content = content.split("!/bin/bash"); 
       content = content[1];
       content = `
       ======== Custom Commands and Functions ============================================
