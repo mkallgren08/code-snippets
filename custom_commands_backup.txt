@@ -31,6 +31,41 @@ function gacBranch(){
 }
 
 function myCommands(){
-  #Prints out list of custom commands.
   coding-local && cd Personal_Projects && cd code-snippets && node readAliases.js $1
+}
+
+# Create a new full stack React app in the current directory. The syntax is createReact [appname] [<optional '-a' flag for auth react>]
+function createReact(){
+  # coding-local && cd Personal_Projects && code-snippets
+  mkdir $1
+  cd $1
+  CURRENT_DIR="$(pwd)"
+  echo $CURRENT_DIR
+  coding-local && cd Personal_Projects && cd code-snippets
+  if [ $2 ]; then
+    echo 'Making an auth file with name '$1
+    cd App_Templates/react-template-with-auth
+  else
+    echo 'Making a non-auth file with name '$1
+    cd App_Templates/react-template 
+  fi
+  cp -r * $CURRENT_DIR && cd $CURRENT_DIR && mv a.gitignore .gitignore
+  # Create new git remote for repo
+  git init && git add . && git commit -m "First commit for project $1"
+  echo "------------------- IMPORTANT!!! --------------------------" 
+  echo "Next steps: create a new repo on your github profile with NO .gitignore or README then git the link from the 'Clone or download' option on the screen and copy it below"
+  read URL
+  git remote add origin $URL && git remote -v
+  echo 'Repo is linked to GitHub!'
+  git pull origin master
+  git init && git add . && git commit -m "Pulled down the .gitignore"
+  git push origin master
+  yarn custom-init
+  heroku create
+  echo 'Checking that remote is currently set up for heroku deployment...'
+  git remote -v
+  yarn deploy
+  echo 'Heroku app is deployed!'
+  git push origin master
+  echo 'Build complete - have fun!!'
 }
