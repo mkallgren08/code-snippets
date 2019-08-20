@@ -17,6 +17,13 @@ getContent = (key, content) => {
       } else {
         content = content[1]
       }
+      // let sub_content = content.split('\n')
+      // sub_content.forEach((e,ind,arr)=>{
+      //   !e?arr.splice(ind,1):null;
+      //   e = e.split(/(=)+/g)
+      // })
+      // console.log(sub_content);
+
       content = `
       ================= Aliases =========================================================
       ${content}
@@ -26,6 +33,8 @@ getContent = (key, content) => {
     } else {
       content = content.split("!/bin/bash"); 
       content = content[1];
+      
+
       content = `
       ======== Custom Commands and Functions ============================================
       ${content}
@@ -75,7 +84,8 @@ getBoth = () => {
 }
 
 compileOutput = (flag) => {
-  let content;
+  !flag?flag='-ac':null;
+  let content; // Do not delete!
   switch (flag) {
     case '-a':
       readFile(bashAliasPath, '# Alias List').then((res) => {
