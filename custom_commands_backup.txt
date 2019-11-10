@@ -4,35 +4,9 @@ function print_my_input() {
   echo 'Your input: ' $1
 }
 
-function makeNewDirs(){
-  # makes new numbered directories
-  # $1 is the number of directories to make
-  # $2 is the name of the parent directory
-  mkdir $2
-  cd $2
-  COUNTER=1
-  while [  $COUNTER -le $1 ]; do
-      echo The counter is $COUNTER
-      mkdir question_$COUNTER
-      let COUNTER=COUNTER+1 
-  done
-}
-
-function gacMas(){
-  # Add, Commit, Push to Master Branch with custom message
-  # As part of the git commit , take all the parameters ($*) and use them as the commit message
-  git add . && git commit -m "$*" && git push origin master
-}
-
-function gacBranch(){
-  # Add, Commit, Push to Other Branch with custom message
-  # first arg is branch name, all other args are commit message
-  git add . && git commit -m "${*:2}" && git push origin $1
-}
-
-function myCommands(){
-  coding-local && cd Personal_Projects && cd code-snippets && node readAliases.js $1
-}
+#####################################################
+#            Directory and Project Creation
+#####################################################
 
 # Create a new full stack React app in the current directory. The syntax is createReact [appname] [<optional '-a' flag for auth react>]
 function createReact(){
@@ -68,4 +42,65 @@ function createReact(){
   echo 'Heroku app is deployed!'
   git push origin master
   echo 'Build complete - have fun!!'
+}
+
+
+# Create a new 3D printer project folder
+
+function new3DProject(){
+  mkdir $1
+  cd $1
+  mkdir ABS PLA
+  cd ABS
+  mkdir 0.1_Nozzle 0.2_Nozzle 0.3_Nozzle 0.4_Nozzle 0.5_Nozzle 0.6_Nozzle 0.8_Nozzle 1.0_Nozzle
+  cd .. && cd PLA
+  mkdir 0.1_Nozzle 0.2_Nozzle 0.3_Nozzle 0.4_Nozzle 0.5_Nozzle 0.6_Nozzle 0.8_Nozzle 1.0_Nozzle
+  cd ../..
+  echo "Folders created - have fun printing!"  
+ }
+
+# Create new diretory with $1 subdirectories
+function makeNewDirs(){
+  # makes new numbered directories
+  # $1 is the number of directories to make
+  # $2 is the name of the parent directory
+  mkdir $2
+  cd $2
+  COUNTER=1
+  while [  $COUNTER -le $1 ]; do
+      echo The counter is $COUNTER
+      mkdir question_$COUNTER
+      let COUNTER=COUNTER+1 
+  done
+}
+
+
+#####################################################
+#             Git Functionality 
+#####################################################
+function gacMas(){
+  # Add, Commit, Push to Master Branch with custom message
+  # As part of the git commit , take all the parameters ($*) and use them as the commit message
+  git add . && git commit -m "$*" && git push origin master
+}
+
+function gacBranch(){
+  # Add, Commit, Push to Other Branch with custom message and set the upstream branch so a simple git push can be used
+  # first arg is branch name, all other args are commit message
+  git add . && git commit -m "${*:2}" && git push --set-upstream origin $1
+}
+
+
+function gacUp(){
+  #Add, commit, push to upstream branch
+  #Only works if upstream has been previously set with git push --set-upstream origin <branch>
+  git add . && git commit -m "$*" && git push
+}
+
+#####################################################
+#             List My Commands (For Reference)
+#####################################################
+
+function myCommands(){
+  coding-local && cd Personal_Projects && cd code-snippets && node readAliases.js $1
 }

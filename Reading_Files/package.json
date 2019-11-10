@@ -1,0 +1,10 @@
+{
+  "name": "reading_files",
+  "version": "1.0.0",
+  "description": "A simple template file for reading files using something other than the fs module in Node",
+  "main": "XMLRequestRead.js",
+  "license": "MIT",
+  "dependencies": {
+    "xmlhttprequest": "^1.8.0"
+  }
+}

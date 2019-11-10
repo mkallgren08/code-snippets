@@ -1,0 +1,22 @@
+The code of this assignment looks solid, but the highest grade I can give you is a D- because the app has to be deployed. Try deploying it to Heroku rather than to Github Pages. To do so, run the following commands in order: 
+
+`heroku create`
+	* makes a new heroku app
+
+`git remote -v`
+	* Shows the remotes for the git repo. Make sure that you have a fetch and a pull (or push) remote for Heroku
+
+`yarn build`
+	* Builds your React app for deployment
+
+`git add .`
+
+`git commit -m "Put your message here"`
+
+`git push heroku master`
+
+If, after running these commands, your app is still not deployed to Heroku properly, go back to the terminal that your app is open in and type:
+
+`heroku logs`
+
+Scroll up through the resulting logs and find the first error that's thrown. Usually it's a missing dependency (solved by running `yarn add [dependency]` ) or a mistyped relative filepath. Good luck!
