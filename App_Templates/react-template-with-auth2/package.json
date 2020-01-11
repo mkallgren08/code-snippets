@@ -1,10 +1,10 @@
 {
-  "name": "mern",
+  "name": "hangman",
   "version": "1.0.0",
-  "description": "Mern Demo",
+  "description": "hangman game written using MERN stack",
   "main": "server.js",
   "scripts": {
-    "custom-init": "yarn install && cd client && touch .env && echo 'SKIP_PREFLIGHT_CHECK=true' >> .env && yarn install && cd .. ",
+    "custom-init": "yarn install && cd client && yarn install && cd .. ",
     "server": "node server.js",
     "client": "cd client && npm run start",
     "start": "concurrently \"nodemon server.js\" \"npm run client\"",
@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "dotenv": "^6.2.0",
+    "auth0-js": "^9.0.2",
     "axios": "^0.16.2",
     "body-parser": "^1.18.2",
     "express": "^4.15.4",
