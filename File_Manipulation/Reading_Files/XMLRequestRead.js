@@ -1,3 +1,5 @@
+// Note - run 'yarn add xmlhttprequest' for this to work
+
 const readline = require('readline');
 const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
