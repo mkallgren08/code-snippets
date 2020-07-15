@@ -1,0 +1,17 @@
+# Creates a new 3D Printing Project where the paretn folder's
+# name is the first parameter. 
+
+# To include this function itno your bash profile when it loads
+# make sure it is properly sourced. 
+
+function new3DProject(){
+  mkdir $1
+  cd $1
+  mkdir ABS PLA
+  cd ABS
+  mkdir 0.1_Nozzle 0.2_Nozzle 0.3_Nozzle 0.4_Nozzle 0.5_Nozzle 0.6_Nozzle 0.8_Nozzle 1.0_Nozzle
+  cd .. && cd PLA
+  mkdir 0.1_Nozzle 0.2_Nozzle 0.3_Nozzle 0.4_Nozzle 0.5_Nozzle 0.6_Nozzle 0.8_Nozzle 1.0_Nozzle
+  cd ../..
+  echo "Folders created - have fun printing!"  
+ }

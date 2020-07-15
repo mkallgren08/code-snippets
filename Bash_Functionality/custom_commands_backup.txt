@@ -4,6 +4,16 @@ function print_my_input() {
   echo 'Your input: ' $1
 }
 
+
+#####################################################
+#             List My Commands (For Reference)
+#####################################################
+
+function myCommands(){
+  coding-local && cd Personal_Projects && cd code-snippets && node readAliases.js $1
+}
+
+
 #####################################################
 #            Directory and Project Creation
 #####################################################
@@ -11,37 +21,39 @@ function print_my_input() {
 # Create a new full stack React app in the current directory. The syntax is createReact [appname] [<optional '-a' flag for auth react>]
 function createReact(){
   # coding-local && cd Personal_Projects && code-snippets
+
   mkdir $1
   cd $1
   CURRENT_DIR="$(pwd)"
   echo $CURRENT_DIR
   coding-local && cd Personal_Projects && cd code-snippets
   if [ $2 ]; then
-    echo 'Making an auth file with name '$1
-    cd App_Templates/react-template-with-auth
+    echo -e "${GREEN}Making an auth file with name:${NC} ${ORANGE}"$1 ${NC}
+    cd App_Templates/react-template-with-auth2
   else
-    echo 'Making a non-auth file with name '$1
+    echo -e "${GREEN}Making a non-auth file with name:${NC} ${ORANGE}"$1 ${NC}
     cd App_Templates/react-template 
   fi
   cp -r * $CURRENT_DIR && cd $CURRENT_DIR && mv a.gitignore .gitignore
   # Create new git remote for repo
   git init && git add . && git commit -m "First commit for project $1"
-  echo "------------------- IMPORTANT!!! --------------------------" 
-  echo "Next steps: create a new repo on your github profile with NO .gitignore or README then git the link from the 'Clone or download' option on the screen and copy it below"
+  echo -e "${RED}------------------- IMPORTANT!!! --------------------------${NC}" 
+  echo -e "${LIGHTRED}Next steps: create a new repo on your github profile with NO .gitignore or README then git the link from the 'Clone or download' option on the screen and copy it below${NC}"
+  echo -e "${RED}-----------------------------------------------------------${NC}" 
   read URL
   git remote add origin $URL && git remote -v
-  echo 'Repo is linked to GitHub!'
+  echo -e "${PURPLE}Repo is linked to GitHub!${NC}"
   git pull origin master
-  git init && git add . && git commit -m "Pulled down the .gitignore"
+  git init && git add . && git commit -m "${BLUE}Pulled down the .gitignore${NC}"
   git push origin master
   yarn custom-init
   heroku create
-  echo 'Checking that remote is currently set up for heroku deployment...'
+  echo -e "${BLUE}Checking that remote is currently set up for heroku deployment..."
   git remote -v
   yarn deploy
-  echo 'Heroku app is deployed!'
+  echo -e "${GREEN}Heroku app is deployed!${NC}"
   git push origin master
-  echo 'Build complete - have fun!!'
+  echo -e "${GREEN}Build complete - have fun!!${NC}"
 }
 
 
@@ -97,10 +109,19 @@ function gacUp(){
   git add . && git commit -m "$*" && git push
 }
 
+
 #####################################################
-#             List My Commands (For Reference)
+#             Java Functionality 
 #####################################################
 
-function myCommands(){
-  coding-local && cd Personal_Projects && cd code-snippets && node readAliases.js $1
+# Opens jshell
+function jshell(){
+  CURRENT_DIR="$(pwd)"
+  #echo $CURRENT_DIR
+  cd c:
+  cd 'Program Files'
+  cd Java
+  cd jdk-14.0.1/bin
+  ./jshell.exe
+  cd $CURRENT_DIR
 }

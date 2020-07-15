@@ -1,0 +1,31 @@
+#Colors
+RED='\033[0;31m'
+LIGHTRED='\033[1;31m'
+ORANGE='\033[0;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[1;35m'
+GREEN='\033[0;32m'
+#NC - 'no color' i.e. back to normal
+NC='\e[0m'
+
+
+#Note to put on screen for users
+echo 'Type "myCommands <-a> <-c> <-ac>" to list all custom aliases, commands, or both'
+
+
+# Alias List
+alias coding-local='cd ~/OneDrive/Desktop/Coding-Local'
+alias coding-ta='cd ~/OneDrive/Desktop/Coding-TA'
+
+alias portfolio='cd ~/OneDrive/Desktop/Coding-Local/Personal_Projects/Portfolio_Apps/Deployed && code portfolio-full-stack'
+alias srProject='cd ~/OneDrive/Desktop/Coding-Local/Personal_Projects/In_Progress_Apps/Shadowrun_Tracker && code rpg-sr-react'
+
+alias push-snippets='coding-local && cd Personal_Projects && cd code-snippets && git add . && git commit -m "Made some minor adjustments to snippet file" && git push origin master'
+
+alias make-test-folder='cd ~/OneDrive/Desktop && mkdir Test-File && cd Test-File && touch index.js index.html style.css && cd .. && code Test-File'
+alias push-master='git push origin master'
+
+alias newbash='/git-bash.exe'
+
+#custom_commands_source
+source ~/.my_custom_commands.sh
