@@ -10,10 +10,13 @@ NC='\e[0m'
 
 
 #Note to put on screen for users
+echo "Welcome ${USERNAME} - loading your bash profile"
 echo 'Type "myCommands <-a> <-c> <-ac>" to list all custom aliases, commands, or both'
 
 
 # Alias List
+alias reload="c:/'Program Files'/Git/bin/bash.exe"
+
 alias coding-local='cd ~/OneDrive/Desktop/Coding-Local'
 alias coding-ta='cd ~/OneDrive/Desktop/Coding-TA'
 
