@@ -3,14 +3,18 @@
 
 // DEPENDENCIES
 // =====================================
-
+import getopts from "getopts"
+import fs from "fs"
 // Import the FS package for read/write.
-var fs = require("fs");
+// var fs = require("fs");
 
 
-// FUNCTIONS
+
+// Module
 // =====================================
+// exports.jsonMod={
 
+// }
 // Writes to the log.txt file
 var writeToLog = function(data) {
   // Append the JSON data and add a newline character to the end of the log.txt file
@@ -80,6 +84,9 @@ var pick = function(args) {
     break;
   case "do-what-it-says":
     doWhatItSays();
+    break;
+  case "log":
+    writeToLog( args.slice(1))
     break;
   default:
     console.log("Unknown option.");

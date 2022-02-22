@@ -1,0 +1,25 @@
+{
+  "name": "modify_json",
+  "version": "1.0.0",
+  "description": "cli for reading and manipulating json objects",
+  "main": "modifyJSON.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkallgren08/code-snippets.git"
+  },
+  "keywords": [
+    "JSON"
+  ],
+  "author": "Michael Kallgren",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mkallgren08/code-snippets/issues"
+  },
+  "homepage": "https://github.com/mkallgren08/code-snippets#readme",
+  "dependencies": {
+    "getopts": "^2.3.0"
+  }
+}
