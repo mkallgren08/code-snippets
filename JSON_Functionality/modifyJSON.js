@@ -1,11 +1,8 @@
+
+// WORK IN PROGRESS!!!
+
 // DEPENDENCIES
 // =====================================
-
-// Read and set environment variables
-require("dotenv").config();
-
-// Import the API keys
-var keys = require("./keys");
 
 // Import the FS package for read/write.
 var fs = require("fs");
