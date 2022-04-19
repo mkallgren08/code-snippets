@@ -7,6 +7,6 @@ Requires Node's `fs` package and the `getopts` npm package, found [here](https:/
 
 
 ## TO-DO
+- [ ] convert to a module to export for other projects
 - [ ] Create an  `append-to-key` function
 - [ ] Create a `delete-key` option (include maaaaaaaaaaany exit scenarios)
-- [ ] convert to a module to export for other projects
