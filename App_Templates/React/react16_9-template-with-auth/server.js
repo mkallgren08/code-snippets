@@ -3,7 +3,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const routes = require("./routes");
-require('dotenv').config();
+require('../../Handlebars/handlebars-with-sequelize-passport/node_modules/dotenv').config();
 
 const PORT = process.env.PORT || 3001;
 const app = express();
