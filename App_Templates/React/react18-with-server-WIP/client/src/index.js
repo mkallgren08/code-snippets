@@ -1,13 +1,14 @@
-import React from 'react';
+// import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+// import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {makeMainRoutes} from "./routes";
+// Import the Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const container=document.getElementById('root')
 const routes = makeMainRoutes();
-console.log(makeMainRoutes)
 const root=ReactDOM.createRoot(container);
 
 root.render(routes);

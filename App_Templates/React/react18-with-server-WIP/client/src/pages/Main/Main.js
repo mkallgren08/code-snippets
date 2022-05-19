@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Footer,NavBar, PageWrapper} from "../../page_fragments"
 
 class MainPage extends Component {
   constructor(props){
@@ -8,7 +9,17 @@ class MainPage extends Component {
 
   render (){
     return (
-      <h1>WELCOME TO THE MAIN PAGE</h1>
+      <PageWrapper>
+        <h1>Welcome to the main page</h1>
+        <NavBar />
+        <div>
+          <h1>
+            Page content goes here
+          </h1>
+        </div>
+
+        <Footer />
+      </PageWrapper>
     )
   }
 }
