@@ -4,6 +4,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "http-proxy-middleware": "^2.0.6",
     "mongoose": "^6.3.4"
   },
   "scripts": {
@@ -28,12 +29,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mkallgren08/sky_gem_tracker.git"
+    "url": "git+https://github.com/mkallgren08/react18-with-server-WIP.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mkallgren08/sky_gem_tracker/issues"
+    "url": "https://github.com/mkallgren08/react18-with-server-WIP/issues"
   },
-  "homepage": "https://github.com/mkallgren08/sky_gem_tracker#readme"
+  "homepage": "https://github.com/mkallgren08/react18-with-server-WIP#readme"
 }

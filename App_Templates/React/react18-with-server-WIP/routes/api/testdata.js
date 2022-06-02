@@ -1,3 +1,5 @@
+// Use this file to test a database connection!
+
 const router = require("express").Router();
 const testdataController = require("../../controllers/testdataController");
 
